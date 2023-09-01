@@ -1,9 +1,9 @@
 # Use the official Python image from Docker Hub
-FROM python:3.9
+FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 
 # Set environment variables
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+#ENV PYTHONUNBUFFERED 1
+#ENV PYTHONDONTWRITEBYTECODE 1
 
 # Set the working directory
 WORKDIR /app
