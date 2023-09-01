@@ -1,16 +1,23 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/codespaces-linux/.devcontainer/base.Dockerfile
-FROM mcr.microsoft.com/vscode/devcontainers/universal:2-focal
+# Use the official Python image from Docker Hub
+FROM python:3.9
 
-RUN apt-get update && apt-get -y install --no-install-recommends \
-   ffmpeg \ 
-   python3.8-venv \
-   gcc 
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 
-#create global virtual environment using python standard library tools of virtualenv
-ARG USER="codespace"
-ARG VENV_PATH="/home/${USER}/venv"
-COPY requirements.txt /tmp/
-COPY Makefile /tmp/
-RUN su $USER -c "/usr/bin/python3 -m venv /home/${USER}/venv" \
-   && su $USER -c "${VENV_PATH}/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/requirements.txt" \
-   && rm -rf /tmp/requirements.txt 
+# Set the working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    # Add any necessary system packages here
+
+# Install Python dependencies
+COPY requirements.txt /app/
+RUN pip install -r requirements.txt
+
+# Expose the application port (if applicable)
+EXPOSE 8000
+
+# Copy the application code into the container
+COPY . /app/
