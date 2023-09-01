@@ -1,5 +1,6 @@
-from add import add 
+from add import add
 
-def test():
-  ''' Function calling add'''
-  assert add(4, 5) == 9
+def test_add_function():
+    """Test the add function."""
+    result = add(4, 5)
+    assert result == 9
