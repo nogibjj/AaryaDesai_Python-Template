@@ -11,20 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: install packages
+      uses: make install
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9  # Change this to your desired Python version
+    - name: lint
+      uses: make lint
 
-    - name: Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
+    - name: test
+      run: make test
 
-    - name: Run tests
-      run: |
-        pytest  # Change this to your test command if needed
+    - name: format
+      run: make format
 
