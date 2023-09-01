@@ -1,23 +1,30 @@
-name: CI
+name: Python CI
+
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: install packages
-        run: make install
-      - name: lint
-        run: make lint
-      - name: test
-        run: make test
-      - name: format
-        run: make format
-      - name: deploy
-        run: make deploy
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9  # Change this to your desired Python version
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest  # Change this to your test command if needed
+
