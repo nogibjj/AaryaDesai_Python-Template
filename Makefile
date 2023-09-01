@@ -1,10 +1,21 @@
 .PHONY: install run test
 
 install:
-    pip install -r requirements.txt
+    pip install --upgrade pip &&\
+        pip install -r requirements.txt
+
+format:	
+	black *.py 
+
+lint:
+	pylint --disable=R,C --ignore-patterns=test_.*?py *.py
+
+test:
+    pytest
+
 
 run:
     python your_app.py
 
-test:
-    pytest
+
+all: install lint format test 
