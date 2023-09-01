@@ -12,14 +12,14 @@ WORKDIR /app
 # RUN apt-get update && apt-get install -y ...
 
 # Copy your project files into the container
-COPY . /app/
+#COPY . /app/
 
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Expose any necessary ports (if applicable)
-# EXPOSE 8000
+EXPOSE 8000
 
 # Define an entry point (if needed)
 # ENTRYPOINT ["python", "your_script.py"]
