@@ -11,11 +11,11 @@ lint:
 	pylint --disable=R,C --ignore-patterns=test_.*?py *.py
 
 test:
-    pytest
+    python -m pytest -vv --cov=main test_*.py
 
 
 run:
-    python your_app.py
+    python add.py
 
 
 all: install lint format test 
