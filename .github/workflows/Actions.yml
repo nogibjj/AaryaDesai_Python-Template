@@ -16,10 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: install packages
-      uses: make install
+      run: make install
 
     - name: lint
-      uses: make lint
+      run: make lint
 
     - name: test
       run: make test
