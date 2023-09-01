@@ -9,4 +9,5 @@ def add(a, b):
     Returns:
         float or int: The sum of a and b.
     """
-    return a + b
+    final = a + b
+    return final
